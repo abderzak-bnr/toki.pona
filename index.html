@@ -7,6 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- تحميل ملف الرموز الاحترافية الـ 137 من مشروع اللعبة -->
+  <script src="glyphs.js"></script>
   <style>
     :root {
       --bg: #000000;
@@ -539,10 +541,10 @@
     .cartouche-box {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       border: 2.5px solid currentColor;
       border-radius: 16px;
-      padding: 7px 12px;
+      padding: 6px 12px;
     }
 
     .actions-row {
@@ -818,7 +820,7 @@
         <button class="nav-btn" data-tab="converter" onclick="switchTab('converter')">المحوّل والرموز</button>
         <button class="nav-btn" data-tab="translator" onclick="switchTab('translator')">المترجم (عربي / إنجليزي)</button>
         <button class="nav-btn" data-tab="dictionary" onclick="switchTab('dictionary')">القاموس (137 كلمة)</button>
-        <span title="حالة الاتصال بـ Linku" style="font-size:0.78rem; color:var(--text-muted); margin-right:8px;">
+        <span title="حالة الاتصال بالصوت" style="font-size:0.78rem; color:var(--text-muted); margin-right:8px;">
           <span class="sync-dot" id="syncDot"></span><span id="syncText">Linku</span>
         </span>
       </div>
@@ -904,8 +906,8 @@
 
           <div class="translation-box">
             <div class="translation-label">المعنى بالعربية:</div>
-            <div class="translation-result" id="semanticOutput">أنا أريد شراء / الحصول على دراجة</div>
-            <div class="translation-note" id="grammarNote">الفاعل: أنا | الفعل: أريد الحصول على / شراء | المفعول به: دراجة / مركبة</div>
+            <div class="translation-result" id="semanticOutput">أنا أريد شراء دراجة</div>
+            <div class="translation-note" id="grammarNote">الفاعل: أنا | الفعل/الخبر: أريد شراء | المفعول به: دراجة</div>
           </div>
         </div>
 
@@ -1058,149 +1060,148 @@
 
     // Complete 137 Official Toki Pona Words (120 pu + 17 ku suli)
     const DICTIONARY = [
-      { w: "a", ar: "آه / تعجب / تأكيد", cat: "grammar", svg: '<path d="M50 18 L50 65 M50 78 L50 84"/>' },
-      { w: "ala", ar: "لا / غير / صفر / لا شيء", cat: "grammar", svg: '<path d="M25 25 L75 75 M75 25 L25 75"/>' },
-      { w: "ale", ar: "كل / جميع / الكون / 100", cat: "grammar", svg: '<path d="M30 50 C15 30, 15 70, 30 50 C45 30, 55 70, 70 50 C85 30, 85 70, 70 50 C55 30, 45 70, 30 50 Z"/>' },
-      { w: "ali", ar: "كل / جميع (مرادف ale)", cat: "grammar", svg: '<path d="M30 50 C15 30, 15 70, 30 50 C45 30, 55 70, 70 50 C85 30, 85 70, 70 50 C55 30, 45 70, 30 50 Z"/>' },
-      { w: "anu", ar: "أو / اختيار", cat: "grammar", svg: '<path d="M50 82 L50 45 L25 22 M50 45 L75 22"/>' },
-      { w: "en", ar: "و (بين فاعلين)", cat: "grammar", svg: '<path d="M50 22 L50 78 M22 50 L78 50"/>' },
-      { w: "e", ar: "أداة المفعول به المباشر", cat: "grammar", svg: '<path d="M32 35 L68 35 M32 65 L68 65 M50 35 L50 65"/>' },
-      { w: "ijo", ar: "شيء / أمر / كائن / مادة", cat: "objects", svg: '<circle cx="50" cy="50" r="22"/>' },
-      { w: "ike", ar: "سيء / معقد / صعب", cat: "qualities", svg: '<path d="M25 65 Q50 35 75 65"/><circle cx="35" cy="36" r="4" fill="currentColor"/><circle cx="65" cy="36" r="4" fill="currentColor"/>' },
-      { w: "insa", ar: "داخل / بطن / وسط", cat: "objects", svg: '<rect x="22" y="22" width="56" height="56" rx="8"/><circle cx="50" cy="50" r="8" fill="currentColor"/>' },
-      { w: "kepeken", ar: "باستخدام / بواسطة", cat: "grammar", svg: '<path d="M25 70 L50 30 L75 70 M35 55 L65 55"/>' },
-      { w: "la", ar: "إذا / عندما / في سياق...", cat: "grammar", svg: '<path d="M35 20 C60 35, 60 65, 35 80"/>' },
-      { w: "li", ar: "أداة ربط الفاعل بالخبر", cat: "grammar", svg: '<path d="M30 50 L70 50 M55 35 L70 50 L55 65"/>' },
-      { w: "lon", ar: "في / على / موجود / حقيقي", cat: "grammar", svg: '<path d="M20 72 L80 72"/><circle cx="50" cy="46" r="14"/>' },
-      { w: "mi", ar: "أنا / نحن", cat: "grammar", svg: '<circle cx="50" cy="50" r="26"/><circle cx="50" cy="50" r="6" fill="currentColor"/>' },
-      { w: "mu", ar: "صوت حيوان / مواء / زئير", cat: "nature", svg: '<path d="M25 65 Q38 30 50 55 Q62 30 75 65"/>' },
-      { w: "ni", ar: "هذا / هذه / ذلك", cat: "grammar", svg: '<path d="M50 20 L50 78 M32 60 L50 78 L68 60"/>' },
-      { w: "o", ar: "يا (للنداء) / فـ (للأمر)", cat: "grammar", svg: '<circle cx="50" cy="40" r="18"/><path d="M50 66 L50 84"/>' },
-      { w: "ona", ar: "هو / هي / هم", cat: "grammar", svg: '<path d="M25 50 L75 50"/><circle cx="50" cy="30" r="8"/>' },
-      { w: "pi", ar: "ذو / خاص بـ (تجميع الصفات)", cat: "grammar", svg: '<path d="M30 25 L30 75 L75 75"/>' },
-      { w: "pona", ar: "جيد / بسيط / لطيف / يصلح", cat: "qualities", svg: '<path d="M24 42 Q50 76 76 42"/>' },
-      { w: "sama", ar: "نفس / مثل / متشابه / أخ", cat: "qualities", svg: '<path d="M25 38 L75 38 M25 62 L75 62"/>' },
-      { w: "seme", ar: "ماذا / أي / أداة استفهام", cat: "grammar", svg: '<path d="M35 35 C35 18, 65 18, 65 38 C65 50, 50 52, 50 64 M50 78 L50 84"/>' },
-      { w: "sina", ar: "أنت / أنتم", cat: "grammar", svg: '<circle cx="50" cy="50" r="26"/><path d="M50 16 L50 32"/>' },
-      { w: "tan", ar: "من / بسبب / أصل", cat: "grammar", svg: '<path d="M75 50 L25 50 M42 32 L25 50 L42 68"/>' },
-      { w: "taso", ar: "فقط / لكن / وحيد", cat: "grammar", svg: '<path d="M25 50 L75 50"/><circle cx="50" cy="50" r="6" fill="currentColor"/>' },
-      { w: "tawa", ar: "إلى / يذهب / يتحرك", cat: "actions", svg: '<path d="M22 65 L52 35 L78 65 M52 35 L52 75"/>' },
-      { w: "toki", ar: "يتكلم / لغة / مرحباً / تواصل", cat: "actions", svg: '<circle cx="50" cy="58" r="22"/><path d="M50 18 L50 30 M32 22 L38 33 M68 22 L62 33"/>' },
-      { w: "alasa", ar: "يصطاد / يبحث / يجمع", cat: "actions", svg: '<path d="M25 75 L75 25 M52 25 L75 25 L75 48"/><circle cx="38" cy="38" r="10"/>' },
-      { w: "awen", ar: "ينتظر / يبقى / يحمي", cat: "actions", svg: '<path d="M25 75 L25 35 Q50 15 75 35 L75 75"/>' },
-      { w: "jaki", ar: "قذر / مقزز / نفايات", cat: "qualities", svg: '<path d="M25 35 Q40 20 50 40 Q60 60 75 45 M30 65 Q50 50 70 70"/>' },
-      { w: "jo", ar: "يملك / يحمل / لديه", cat: "actions", svg: '<path d="M25 45 L25 72 L75 72 L75 45"/><circle cx="50" cy="45" r="12"/>' },
-      { w: "kalama", ar: "صوت / ضجيج / يعزف", cat: "actions", svg: '<circle cx="35" cy="50" r="14"/><path d="M56 32 Q72 50 56 68 M66 22 Q86 50 66 78"/>' },
-      { w: "kama", ar: "يأتي / يصل / يصبح", cat: "actions", svg: '<path d="M78 65 L48 35 L22 65 M48 35 L48 75"/>' },
-      { w: "ken", ar: "يستطيع / ممكن / قدرة", cat: "actions", svg: '<path d="M30 75 L30 25 L62 25 Q75 25 75 40 Q75 55 62 55 L30 55"/>' },
-      { w: "kute", ar: "يسمع / أذن / يطيع", cat: "actions", svg: '<path d="M45 25 C70 25, 75 75, 45 75 C35 75, 35 55, 50 55"/>' },
-      { w: "lape", ar: "ينام / يرتاح", cat: "actions", svg: '<path d="M20 65 L80 65 M25 52 Q40 42 55 52"/>' },
-      { w: "lukin", ar: "يرى / ينظر / عين / يقرأ", cat: "actions", svg: '<path d="M18 50 Q50 20 82 50 Q50 80 18 50 Z"/><circle cx="50" cy="50" r="11"/>' },
-      { w: "moku", ar: "يأكل / يشرب / طعام", cat: "actions", svg: '<circle cx="50" cy="55" r="22"/><path d="M35 24 L65 24 M50 18 L50 32"/>' },
-      { w: "moli", ar: "ميت / يموت / يقتل", cat: "actions", svg: '<circle cx="50" cy="50" r="26"/><path d="M36 38 L44 46 M44 38 L36 46 M56 38 L64 46 M64 38 L56 46 M38 64 L62 64"/>' },
-      { w: "musi", ar: "يلعب / ممتع / فن / ترفيه", cat: "actions", svg: '<path d="M25 55 Q50 80 75 55"/><circle cx="36" cy="36" r="5" fill="currentColor"/><circle cx="64" cy="36" r="5" fill="currentColor"/><path d="M50 16 L50 28"/>' },
-      { w: "open", ar: "يفتح / يبدأ / بداية", cat: "actions", svg: '<path d="M25 75 L25 25 L75 25 L75 75 M42 50 L58 50 M50 42 L50 58"/>' },
-      { w: "pakala", ar: "مكسور / خطأ / حادث / يدمّر", cat: "actions", svg: '<path d="M25 25 L45 48 L35 55 L75 75 M70 25 L52 45"/>' },
-      { w: "pali", ar: "يعمل / يصنع / يفعل / مشروع", cat: "actions", svg: '<rect x="28" y="45" width="44" height="30"/><path d="M40 45 L40 25 L60 25 L60 45"/>' },
-      { w: "pana", ar: "يعطي / يرسل / يضع / يطلق", cat: "actions", svg: '<path d="M25 55 L50 25 L75 55 M50 25 L50 78 M32 78 L68 78"/>' },
-      { w: "pilin", ar: "يشعر / قلب / عاطفة / يفكر", cat: "actions", svg: '<path d="M50 76 C20 55, 20 26, 38 26 C46 26, 50 34, 50 38 C50 34, 54 26, 62 26 C80 26, 80 55, 50 76 Z"/>' },
-      { w: "pini", ar: "ينهي / نهاية / ماضٍ / مغلق", cat: "actions", svg: '<rect x="25" y="25" width="50" height="50"/><path d="M25 25 L75 75"/>' },
-      { w: "sona", ar: "يعرف / علم / حكمة / معلومة", cat: "actions", svg: '<rect x="28" y="38" width="44" height="36"/><path d="M36 24 L36 32 M50 20 L50 32 M64 24 L64 32"/>' },
-      { w: "unpa", ar: "علاقة حميمية / زواج", cat: "actions", svg: '<path d="M50 75 C22 55, 22 28, 38 28 C46 28, 50 35, 50 40 C50 35, 54 28, 62 28 C78 28, 78 55, 50 75 Z M35 50 L65 50"/>' },
-      { w: "utala", ar: "يقاتل / صراع / ينافس / حرب", cat: "actions", svg: '<path d="M25 75 L75 25 M75 75 L25 25 M22 62 L38 78 M78 62 L62 78"/>' },
-      { w: "wile", ar: "يريد / يحتاج / يجب / رغبة", cat: "actions", svg: '<path d="M25 35 Q38 65 50 42 Q62 65 75 35"/>' },
-      { w: "akesi", ar: "زواحف / برمائيات / سحلية", cat: "nature", svg: '<path d="M25 65 Q45 35 72 35 L78 28 M40 52 L30 68 M58 42 L68 58"/>' },
-      { w: "anpa", ar: "أسفل / تحت / متواضع / أرض", cat: "nature", svg: '<path d="M22 30 L78 30 M50 42 L50 76 M36 62 L50 76 L64 62"/>' },
-      { w: "jan", ar: "شخص / إنسان / بشري", cat: "nature", svg: '<circle cx="50" cy="32" r="14"/><path d="M26 78 C26 52, 74 52, 74 78"/>' },
-      { w: "kala", ar: "سمكة / مخلوق بحري", cat: "nature", svg: '<path d="M20 50 Q48 25 72 50 Q48 75 20 50 Z M72 50 L85 36 L85 64 Z"/>' },
-      { w: "kasi", ar: "نبات / شجرة / عشب / ورقة", cat: "nature", svg: '<path d="M50 78 L50 30 M50 55 L30 38 M50 45 L70 28"/>' },
-      { w: "kili", ar: "فاكهة / خضار / ثمرة", cat: "nature", svg: '<circle cx="50" cy="54" r="22"/><path d="M50 32 Q58 18 70 22"/>' },
-      { w: "kiwen", ar: "حجر / صلب / معدن / صخرة", cat: "nature", svg: '<polygon points="30,72 22,46 44,26 72,32 78,62 56,76"/>' },
-      { w: "ko", ar: "طين / مسحوق / عجين / رمل", cat: "nature", svg: '<path d="M22 68 Q35 42 50 55 Q65 38 78 68 Z"/>' },
-      { w: "kon", ar: "هواء / ريح / روح / غاز", cat: "nature", svg: '<path d="M22 38 Q45 28 68 38 T82 34 M20 58 Q48 48 74 58"/>' },
-      { w: "kule", ar: "لون / ملون / يصبغ", cat: "qualities", svg: '<polygon points="50,22 22,72 78,72"/><path d="M36 48 L64 48"/>' },
-      { w: "kulupu", ar: "مجموعة / مجتمع / فريق", cat: "nature", svg: '<circle cx="50" cy="34" r="10"/><circle cx="30" cy="56" r="10"/><circle cx="70" cy="56" r="10"/>' },
-      { w: "ma", ar: "أرض / بلد / عالم / تراب", cat: "nature", svg: '<circle cx="50" cy="50" r="26"/><path d="M24 50 L76 50 M50 24 L50 76"/>' },
-      { w: "mama", ar: "أب / أم / والد / خالق / مؤسس", cat: "nature", svg: '<circle cx="50" cy="50" r="26"/><circle cx="50" cy="50" r="11"/>' },
-      { w: "mani", ar: "مال / عملة / ثروة / ماشية", cat: "objects", svg: '<circle cx="50" cy="54" r="22"/><path d="M36 28 Q32 18 42 22 M64 28 Q68 18 58 22"/>' },
-      { w: "meli", ar: "امرأة / أنثى / زوجة", cat: "nature", svg: '<circle cx="50" cy="36" r="14"/><path d="M50 50 L50 78 M36 64 L64 64"/>' },
-      { w: "mije", ar: "رجل / ذكر / زوج", cat: "nature", svg: '<circle cx="44" cy="56" r="16"/><path d="M56 44 L76 24 M60 24 L76 24 L76 40"/>' },
-      { w: "mun", ar: "قمر / نجم / جرم سماوي", cat: "nature", svg: '<path d="M62 24 C36 24, 30 76, 62 76 C44 68, 44 32, 62 24 Z"/>' },
-      { w: "pipi", ar: "حشرة / عنكبوت / نملة", cat: "nature", svg: '<ellipse cx="50" cy="50" rx="14" ry="20"/><path d="M36 42 L20 34 M36 50 L18 50 M36 58 L20 66 M64 42 L80 34 M64 50 L82 50 M64 58 L80 66"/>' },
-      { w: "sewi", ar: "سماء / أعلى / مقدس / إلهي", cat: "nature", svg: '<path d="M22 70 L78 70 M50 58 L50 24 M36 38 L50 24 L64 38"/>' },
-      { w: "sijelo", ar: "جسم / جسد / حالة صحية", cat: "nature", svg: '<rect x="34" y="24" width="32" height="52" rx="12"/>' },
-      { w: "soweli", ar: "حيوان ثديي / حيوان أليف", cat: "nature", svg: '<path d="M26 68 L26 42 L68 42 L68 68 M68 42 L78 28 M34 42 L30 28"/>' },
-      { w: "suno", ar: "شمس / ضوء / سطوع / نهار", cat: "nature", svg: '<circle cx="50" cy="50" r="18"/><path d="M50 16 L50 24 M50 76 L50 84 M16 50 L24 50 M76 50 L84 50 M26 26 L32 32 M68 68 L74 74 M74 26 L68 32 M32 68 L26 74"/>' },
-      { w: "telo", ar: "ماء / سائل / مشروب / يغسل", cat: "nature", svg: '<path d="M20 38 Q35 28 50 38 T80 38 M20 60 Q35 50 50 60 T80 60"/>' },
-      { w: "waso", ar: "طائر / مخلوق مجنح", cat: "nature", svg: '<path d="M20 48 Q36 30 50 48 Q64 30 80 48 M50 48 L50 68"/>' },
-      { w: "esun", ar: "سوق / متجر / تجارة / بيع", cat: "objects", svg: '<path d="M22 38 L78 38 L72 74 L28 74 Z M32 38 L38 22 L62 22 L68 38"/>' },
-      { w: "ilo", ar: "أداة / آلة / جهاز", cat: "objects", svg: '<path d="M50 38 L50 80 M28 38 L72 38 L66 24 L34 24 Z"/>' },
-      { w: "len", ar: "ملابس / قماش / غطاء", cat: "objects", svg: '<path d="M24 34 L38 24 L62 24 L76 34 L68 46 L62 42 L62 76 L38 76 L38 42 L32 46 Z"/>' },
-      { w: "lipu", ar: "ورقة / كتاب / شاشة / موقع", cat: "objects", svg: '<rect x="26" y="20" width="48" height="60" rx="4"/><path d="M36 36 L64 36 M36 50 L64 50 M36 64 L54 64"/>' },
-      { w: "luka", ar: "يد / ذراع / خمسة (5)", cat: "objects", svg: '<path d="M34 76 L34 46 M44 76 L44 30 M54 76 L54 28 M64 76 L64 36 M34 62 L24 52"/>' },
-      { w: "lupa", ar: "باب / نافذة / فتحة / ثقب", cat: "objects", svg: '<path d="M28 78 L28 38 C28 20, 72 20, 72 38 L72 78"/>' },
-      { w: "monsi", ar: "خلف / ظهر / وراء", cat: "objects", svg: '<rect x="24" y="24" width="52" height="52"/><path d="M24 24 L24 76" stroke-width="10"/>' },
-      { w: "nasin", ar: "طريق / منهج / أسلوب / ثقافة", cat: "objects", svg: '<path d="M34 78 L44 22 M66 78 L56 22 M50 72 L50 60 M50 48 L50 36"/>' },
-      { w: "nena", ar: "جبل / أنف / نتوء / زر", cat: "objects", svg: '<path d="M18 74 L44 28 L56 28 L82 74"/>' },
-      { w: "noka", ar: "قدم / ساق / أسفل / مشي", cat: "objects", svg: '<path d="M42 22 L42 68 L74 68 L74 76 L34 76 L34 22 Z"/>' },
-      { w: "palisa", ar: "عصا / قضيب / شيء طويل", cat: "objects", svg: '<rect x="44" y="20" width="12" height="60" rx="4"/>' },
-      { w: "pan", ar: "خبز / حبوب / أرز / معكرونة", cat: "objects", svg: '<path d="M24 66 L76 66 L72 44 C72 28, 28 28, 28 44 Z"/>' },
-      { w: "poka", ar: "جانب / بجانب / قرب", cat: "objects", svg: '<rect x="24" y="24" width="52" height="52"/><circle cx="84" cy="50" r="6" fill="currentColor"/>' },
-      { w: "poki", ar: "صندوق / كوب / وعاء / حقيبة", cat: "objects", svg: '<path d="M26 30 L26 74 L74 74 L74 30"/>' },
-      { w: "selo", ar: "جلد / قشرة / سطح خارجي / حدود", cat: "objects", svg: '<path d="M22 45 C22 22, 78 22, 78 45"/>' },
-      { w: "sinpin", ar: "وجه / أمام / جدار / صدر", cat: "objects", svg: '<rect x="24" y="24" width="52" height="52"/><path d="M76 24 L76 76" stroke-width="10"/>' },
-      { w: "sitelen", ar: "صورة / رمز / رسم / كتابة", cat: "objects", svg: '<rect x="22" y="24" width="56" height="52" rx="6"/><path d="M32 62 L46 42 L58 56 L68 46"/>' },
-      { w: "supa", ar: "طاولة / سرير / سطح أفقي", cat: "objects", svg: '<path d="M20 42 L80 42 M30 42 L30 74 M70 42 L70 74"/>' },
-      { w: "tenpo", ar: "وقت / زمن / لحظة / فترة", cat: "objects", svg: '<circle cx="50" cy="50" r="26"/><path d="M50 32 L50 50 L64 58"/>' },
-      { w: "tomo", ar: "بيت / غرفة / مبنى / مكان داخلي", cat: "objects", svg: '<path d="M20 48 L50 22 L80 48 M28 44 L28 76 L72 76 L72 44"/>' },
-      { w: "uta", ar: "فم / شفتان / قبلة / مدخل", cat: "objects", svg: '<ellipse cx="50" cy="50" rx="26" ry="14"/><path d="M24 50 L76 50"/>' },
-      { w: "jelo", ar: "أصفر / ذهبي / فاتح", cat: "qualities", svg: '<polygon points="50,22 22,72 78,72"/><circle cx="50" cy="54" r="7"/>' },
-      { w: "laso", ar: "أزرق / أخضر", cat: "qualities", svg: '<polygon points="50,22 22,72 78,72"/><path d="M36 56 Q50 46 64 56"/>' },
-      { w: "lete", ar: "بارد / ثلج / نيء", cat: "qualities", svg: '<path d="M50 20 L50 80 M20 50 L80 50 M30 30 L70 70 M70 30 L30 70"/>' },
-      { w: "lili", ar: "صغير / قليل / شاب / قصير", cat: "qualities", svg: '<circle cx="50" cy="50" r="10"/>' },
-      { w: "linja", ar: "خط / خيط / شعر / حبل", cat: "qualities", svg: '<path d="M20 50 C35 28, 65 72, 80 50"/>' },
-      { w: "loje", ar: "أحمر / وردي", cat: "qualities", svg: '<polygon points="50,22 22,72 78,72"/><path d="M50 42 L50 64"/>' },
-      { w: "mute", ar: "كثير / عدة / عدد / كمية", cat: "qualities", svg: '<path d="M30 28 L30 72 M50 28 L50 72 M70 28 L70 72"/>' },
-      { w: "nanpa", ar: "رقم / عدد / ترتيب (-th)", cat: "qualities", svg: '<path d="M38 24 L34 76 M66 24 L62 76 M24 40 L76 40 M22 60 L74 60"/>' },
-      { w: "nasa", ar: "غريب / مجنون / مرح / مخمور", cat: "qualities", svg: '<path d="M50 50 C50 42, 60 42, 60 50 C60 62, 40 62, 40 50 C40 32, 70 32, 70 50 C70 74, 28 74, 28 50"/>' },
-      { w: "olin", ar: "يحب (عاطفياً) / مودة / احترام", cat: "qualities", svg: '<path d="M42 68 C22 52, 22 30, 34 30 C40 30, 42 36, 42 38 C42 36, 44 30, 50 30 M58 72 C38 56, 38 34, 50 34 C56 34, 58 40, 58 42 C58 40, 60 34, 66 34 C78 34, 78 56, 58 72 Z"/>' },
-      { w: "pimeja", ar: "أسود / مظلم / ليل / ظل", cat: "qualities", svg: '<polygon points="50,22 22,72 78,72" fill="currentColor"/>' },
-      { w: "seli", ar: "نار / حار / دافئ / يطبخ", cat: "qualities", svg: '<path d="M32 72 L32 45 L44 55 L50 28 L56 55 L68 45 L68 72 Z"/>' },
-      { w: "sike", ar: "دائرة / كرة / عجلة / سنة", cat: "qualities", svg: '<circle cx="50" cy="50" r="26"/>' },
-      { w: "sin", ar: "جديد / طازج / إضافي / مرة أخرى", cat: "qualities", svg: '<path d="M50 22 L56 44 L78 50 L56 56 L50 78 L44 56 L22 50 L44 44 Z"/>' },
-      { w: "suli", ar: "كبير / طويل / مهم / سمين", cat: "qualities", svg: '<circle cx="50" cy="50" r="32"/>' },
-      { w: "suwi", ar: "حلو / لطيف / جذاب / سكر", cat: "qualities", svg: '<path d="M24 44 Q50 74 76 44 M38 36 L38 42 M62 36 L62 42"/>' },
-      { w: "tu", ar: "اثنان (2) / يقسم", cat: "qualities", svg: '<path d="M38 26 L38 74 M62 26 L62 74"/>' },
-      { w: "walo", ar: "أبيض / فاتح / شاحب", cat: "qualities", svg: '<polygon points="50,22 22,72 78,72"/>' },
-      { w: "wan", ar: "واحد (1) / متحد / فرد", cat: "qualities", svg: '<path d="M50 24 L50 76"/>' },
-      { w: "wawa", ar: "قوي / طاقة / واثق / مكثف", cat: "qualities", svg: '<path d="M26 70 L38 32 L50 56 L62 32 L74 70"/>' },
-      { w: "weka", ar: "بعيد / غائب / يزيل / يتجاهل", cat: "qualities", svg: '<rect x="28" y="28" width="44" height="44" stroke-dasharray="8 6"/>' },
-      { w: "epiku", ar: "ملحمي / رائع / مذهل", cat: "ku", svg: '<path d="M24 44 Q50 74 76 44 M50 18 L54 28 L64 30 L56 36 L58 46 L50 40 L42 46 L44 36 L36 30 L46 28 Z"/>' },
-      { w: "jasima", ar: "يعكس / مرآة / مقابل", cat: "ku", svg: '<path d="M50 20 L50 80 M24 38 L40 50 L24 62 M76 38 L60 50 L76 62"/>' },
-      { w: "kijetesantakalu", ar: "راكون / ابن عرس / حيوان فروي", cat: "ku", svg: '<path d="M25 65 L32 35 L46 45 L58 35 L65 65 M22 50 L36 50 M54 50 L68 50"/>' },
-      { w: "kin", ar: "أيضاً / حقاً / بالفعل", cat: "ku", svg: '<path d="M50 22 L50 64 M50 76 L50 82 M36 34 L64 34"/>' },
-      { w: "kipisi", ar: "يقطع / يقسم / قطعة", cat: "ku", svg: '<path d="M24 50 L76 50 M34 32 L66 68 M66 32 L34 68"/>' },
-      { w: "kokosila", ar: "يتحدث لغة غير توكي بونا في مجتمعها", cat: "ku", svg: '<circle cx="50" cy="54" r="20"/><path d="M30 24 L70 76 M70 24 L30 76"/>' },
-      { w: "ku", ar: "قاموس توكي بونا (كتاب ku)", cat: "ku", svg: '<rect x="26" y="22" width="48" height="56" rx="4"/><path d="M40 36 L40 64 M40 50 L58 36 M46 46 L60 64"/>' },
-      { w: "lanpan", ar: "يأخذ / يمسك / يستولي على", cat: "ku", svg: '<path d="M26 32 L26 68 L74 68 L74 32 M50 22 L50 54 M38 42 L50 54 L62 42"/>' },
-      { w: "leko", ar: "مربع / مكعب / درج / كتلة", cat: "ku", svg: '<rect x="26" y="26" width="48" height="48"/>' },
-      { w: "meso", ar: "متوسط / عادي / منتصف", cat: "ku", svg: '<path d="M22 50 L78 50 M42 36 L58 36 M42 64 L58 64"/>' },
-      { w: "misikeke", ar: "دواء / علاج / طبي", cat: "ku", svg: '<rect x="26" y="26" width="48" height="48" rx="10"/><path d="M50 36 L50 64 M36 50 L64 50"/>' },
-      { w: "monsuta", ar: "خوف / وحش / خطر / قلق", cat: "ku", svg: '<path d="M24 68 L36 32 L50 52 L64 32 L76 68"/>' },
-      { w: "n", ar: "هممم / تفكير / تردد", cat: "ku", svg: '<path d="M32 68 L32 34 Q50 24 68 34 L68 68"/>' },
-      { w: "namako", ar: "توابل / إضافي / زخرفة / ملح", cat: "ku", svg: '<path d="M50 22 L50 78 M22 50 L78 50 M32 32 L68 68 M68 32 L32 68"/>' },
-      { w: "oko", ar: "عين / بصر (مرادف lukin)", cat: "ku", svg: '<path d="M18 50 Q50 20 82 50 Q50 80 18 50 Z"/><circle cx="50" cy="50" r="8" fill="currentColor"/>' },
-      { w: "pu", ar: "الكتاب الرسمي الأول لتوكي بونا", cat: "ku", svg: '<rect x="26" y="22" width="48" height="56" rx="4"/><path d="M38 44 Q50 64 62 44"/>' },
-      { w: "soko", ar: "فطر / عيش الغراب", cat: "ku", svg: '<path d="M22 48 C22 24, 78 24, 78 48 Z M42 48 L42 76 L58 76 L58 48"/>' },
-      { w: "tonsi", ar: "غير ثنائي الجندر / عابر / متنوع", cat: "ku", svg: '<circle cx="50" cy="48" r="16"/><path d="M50 64 L50 82 M38 74 L62 74 M36 34 L22 20 M64 34 L78 20"/>' }
+      { w: "a", ar: "آه / تعجب / تأكيد", cat: "grammar" },
+      { w: "ala", ar: "لا / غير / صفر / لا شيء", cat: "grammar" },
+      { w: "ale", ar: "كل / جميع / الكون / 100", cat: "grammar" },
+      { w: "ali", ar: "كل / جميع (مرادف ale)", cat: "grammar" },
+      { w: "anu", ar: "أو / اختيار", cat: "grammar" },
+      { w: "en", ar: "و (بين فاعلين)", cat: "grammar" },
+      { w: "e", ar: "أداة المفعول به المباشر", cat: "grammar" },
+      { w: "ijo", ar: "شيء / أمر / كائن / مادة", cat: "objects" },
+      { w: "ike", ar: "سيء / معقد / صعب", cat: "qualities" },
+      { w: "insa", ar: "داخل / بطن / وسط", cat: "objects" },
+      { w: "kepeken", ar: "باستخدام / بواسطة", cat: "grammar" },
+      { w: "la", ar: "إذا / عندما / في سياق...", cat: "grammar" },
+      { w: "li", ar: "أداة ربط الفاعل بالخبر", cat: "grammar" },
+      { w: "lon", ar: "في / على / موجود / حقيقي", cat: "grammar" },
+      { w: "mi", ar: "أنا / نحن", cat: "grammar" },
+      { w: "mu", ar: "صوت حيوان / مواء / زئير", cat: "nature" },
+      { w: "ni", ar: "هذا / هذه / ذلك", cat: "grammar" },
+      { w: "o", ar: "يا (للنداء) / فـ (للأمر)", cat: "grammar" },
+      { w: "ona", ar: "هو / هي / هم", cat: "grammar" },
+      { w: "pi", ar: "ذو / خاص بـ (تجميع الصفات)", cat: "grammar" },
+      { w: "pona", ar: "جيد / بسيط / لطيف / يصلح", cat: "qualities" },
+      { w: "sama", ar: "نفس / مثل / متشابه / أخ", cat: "qualities" },
+      { w: "seme", ar: "ماذا / أي / أداة استفهام", cat: "grammar" },
+      { w: "sina", ar: "أنت / أنتم", cat: "grammar" },
+      { w: "tan", ar: "من / بسبب / أصل", cat: "grammar" },
+      { w: "taso", ar: "فقط / لكن / وحيد", cat: "grammar" },
+      { w: "tawa", ar: "إلى / يذهب / يتحرك", cat: "actions" },
+      { w: "toki", ar: "يتكلم / لغة / مرحباً / تواصل", cat: "actions" },
+      { w: "alasa", ar: "يصطاد / يبحث / يجمع", cat: "actions" },
+      { w: "awen", ar: "ينتظر / يبقى / يحمي", cat: "actions" },
+      { w: "jaki", ar: "قذر / مقزز / نفايات", cat: "qualities" },
+      { w: "jo", ar: "يملك / يحمل / لديه", cat: "actions" },
+      { w: "kalama", ar: "صوت / ضجيج / يعزف", cat: "actions" },
+      { w: "kama", ar: "يأتي / يصل / يصبح", cat: "actions" },
+      { w: "ken", ar: "يستطيع / ممكن / قدرة", cat: "actions" },
+      { w: "kute", ar: "يسمع / أذن / يطيع", cat: "actions" },
+      { w: "lape", ar: "ينام / يرتاح", cat: "actions" },
+      { w: "lukin", ar: "يرى / ينظر / عين / يقرأ", cat: "actions" },
+      { w: "moku", ar: "يأكل / يشرب / طعام", cat: "actions" },
+      { w: "moli", ar: "ميت / يموت / يقتل", cat: "actions" },
+      { w: "musi", ar: "يلعب / ممتع / فن / ترفيه", cat: "actions" },
+      { w: "open", ar: "يفتح / يبدأ / بداية", cat: "actions" },
+      { w: "pakala", ar: "مكسور / خطأ / حادث / يدمّر", cat: "actions" },
+      { w: "pali", ar: "يعمل / يصنع / يفعل / مشروع", cat: "actions" },
+      { w: "pana", ar: "يعطي / يرسل / يضع / يطلق", cat: "actions" },
+      { w: "pilin", ar: "يشعر / قلب / عاطفة / يفكر", cat: "actions" },
+      { w: "pini", ar: "ينهي / نهاية / ماضٍ / مغلق", cat: "actions" },
+      { w: "sona", ar: "يعرف / علم / حكمة / معلومة", cat: "actions" },
+      { w: "unpa", ar: "علاقة حميمية / زواج", cat: "actions" },
+      { w: "utala", ar: "يقاتل / صراع / ينافس / حرب", cat: "actions" },
+      { w: "wile", ar: "يريد / يحتاج / يجب / رغبة", cat: "actions" },
+      { w: "akesi", ar: "زواحف / برمائيات / سحلية", cat: "nature" },
+      { w: "anpa", ar: "أسفل / تحت / متواضع / أرض", cat: "nature" },
+      { w: "jan", ar: "شخص / إنسان / بشري", cat: "nature" },
+      { w: "kala", ar: "سمكة / مخلوق بحري", cat: "nature" },
+      { w: "kasi", ar: "نبات / شجرة / عشب / ورقة", cat: "nature" },
+      { w: "kili", ar: "فاكهة / خضار / ثمرة", cat: "nature" },
+      { w: "kiwen", ar: "حجر / صلب / معدن / صخرة", cat: "nature" },
+      { w: "ko", ar: "طين / مسحوق / عجين / رمل", cat: "nature" },
+      { w: "kon", ar: "هواء / ريح / روح / غاز", cat: "nature" },
+      { w: "kule", ar: "لون / ملون / يصبغ", cat: "qualities" },
+      { w: "kulupu", ar: "مجموعة / مجتمع / فريق", cat: "nature" },
+      { w: "ma", ar: "أرض / بلد / عالم / تراب", cat: "nature" },
+      { w: "mama", ar: "أب / أم / والد / خالق / مؤسس", cat: "nature" },
+      { w: "mani", ar: "مال / عملة / ثروة / ماشية", cat: "objects" },
+      { w: "meli", ar: "امرأة / أنثى / زوجة", cat: "nature" },
+      { w: "mije", ar: "رجل / ذكر / زوج", cat: "nature" },
+      { w: "mun", ar: "قمر / نجم / جرم سماوي", cat: "nature" },
+      { w: "pipi", ar: "حشرة / عنكبوت / نملة", cat: "nature" },
+      { w: "sewi", ar: "سماء / أعلى / مقدس / إلهي", cat: "nature" },
+      { w: "sijelo", ar: "جسم / جسد / حالة صحية", cat: "nature" },
+      { w: "soweli", ar: "حيوان ثديي / حيوان أليف", cat: "nature" },
+      { w: "suno", ar: "شمس / ضوء / سطوع / نهار", cat: "nature" },
+      { w: "telo", ar: "ماء / سائل / مشروب / يغسل", cat: "nature" },
+      { w: "waso", ar: "طائر / مخلوق مجنح", cat: "nature" },
+      { w: "esun", ar: "سوق / متجر / تجارة / بيع", cat: "objects" },
+      { w: "ilo", ar: "أداة / آلة / جهاز", cat: "objects" },
+      { w: "len", ar: "ملابس / قماش / غطاء", cat: "objects" },
+      { w: "lipu", ar: "ورقة / كتاب / شاشة / موقع", cat: "objects" },
+      { w: "luka", ar: "يد / ذراع / خمسة (5)", cat: "objects" },
+      { w: "lupa", ar: "باب / نافذة / فتحة / ثقب", cat: "objects" },
+      { w: "monsi", ar: "خلف / ظهر / وراء", cat: "objects" },
+      { w: "nasin", ar: "طريق / منهج / أسلوب / ثقافة", cat: "objects" },
+      { w: "nena", ar: "جبل / أنف / نتوء / زر", cat: "objects" },
+      { w: "noka", ar: "قدم / ساق / أسفل / مشي", cat: "objects" },
+      { w: "palisa", ar: "عصا / قضيب / شيء طويل", cat: "objects" },
+      { w: "pan", ar: "خبز / حبوب / أرز / معكرونة", cat: "objects" },
+      { w: "poka", ar: "جانب / بجانب / قرب", cat: "objects" },
+      { w: "poki", ar: "صندوق / كوب / وعاء / حقيبة", cat: "objects" },
+      { w: "selo", ar: "جلد / قشرة / سطح خارجي / حدود", cat: "objects" },
+      { w: "sinpin", ar: "وجه / أمام / جدار / صدر", cat: "objects" },
+      { w: "sitelen", ar: "صورة / رمز / رسم / كتابة", cat: "objects" },
+      { w: "supa", ar: "طاولة / سرير / سطح أفقي", cat: "objects" },
+      { w: "tenpo", ar: "وقت / زمن / لحظة / فترة", cat: "objects" },
+      { w: "tomo", ar: "بيت / غرفة / مبنى / مكان داخلي", cat: "objects" },
+      { w: "uta", ar: "فم / شفتان / قبلة / مدخل", cat: "objects" },
+      { w: "jelo", ar: "أصفر / ذهبي / فاتح", cat: "qualities" },
+      { w: "laso", ar: "أزرق / أخضر", cat: "qualities" },
+      { w: "lete", ar: "بارد / ثلج / نيء", cat: "qualities" },
+      { w: "lili", ar: "صغير / قليل / شاب / قصير", cat: "qualities" },
+      { w: "linja", ar: "خط / خيط / شعر / حبل", cat: "qualities" },
+      { w: "loje", ar: "أحمر / وردي", cat: "qualities" },
+      { w: "mute", ar: "كثير / عدة / عدد / كمية", cat: "qualities" },
+      { w: "nanpa", ar: "رقم / عدد / ترتيب (-th)", cat: "qualities" },
+      { w: "nasa", ar: "غريب / مجنون / مرح / مخمور", cat: "qualities" },
+      { w: "olin", ar: "يحب (عاطفياً) / مودة / احترام", cat: "qualities" },
+      { w: "pimeja", ar: "أسود / مظلم / ليل / ظل", cat: "qualities" },
+      { w: "seli", ar: "نار / حار / دافئ / يطبخ", cat: "qualities" },
+      { w: "sike", ar: "دائرة / كرة / عجلة / سنة", cat: "qualities" },
+      { w: "sin", ar: "جديد / طازج / إضافي / مرة أخرى", cat: "qualities" },
+      { w: "suli", ar: "كبير / طويل / مهم / سمين", cat: "qualities" },
+      { w: "suwi", ar: "حلو / لطيف / جذاب / سكر", cat: "qualities" },
+      { w: "tu", ar: "اثنان (2) / يقسم", cat: "qualities" },
+      { w: "walo", ar: "أبيض / فاتح / شاحب", cat: "qualities" },
+      { w: "wan", ar: "واحد (1) / متحد / فرد", cat: "qualities" },
+      { w: "wawa", ar: "قوي / طاقة / واثق / مكثف", cat: "qualities" },
+      { w: "weka", ar: "بعيد / غائب / يزيل / يتجاهل", cat: "qualities" },
+      { w: "epiku", ar: "ملحمي / رائع / مذهل", cat: "ku" },
+      { w: "jasima", ar: "يعكس / مرآة / مقابل", cat: "ku" },
+      { w: "kijetesantakalu", ar: "راكون / ابن عرس / حيوان فروي", cat: "ku" },
+      { w: "kin", ar: "أيضاً / حقاً / بالفعل", cat: "ku" },
+      { w: "kipisi", ar: "يقطع / يقسم / قطعة", cat: "ku" },
+      { w: "kokosila", ar: "يتحدث لغة غير توكي بونا في مجتمعها", cat: "ku" },
+      { w: "ku", ar: "قاموس توكي بونا (كتاب ku)", cat: "ku" },
+      { w: "lanpan", ar: "يأخذ / يمسك / يستولي على", cat: "ku" },
+      { w: "leko", ar: "مربع / مكعب / درج / كتلة", cat: "ku" },
+      { w: "meso", ar: "متوسط / عادي / منتصف", cat: "ku" },
+      { w: "misikeke", ar: "دواء / علاج / طبي", cat: "ku" },
+      { w: "monsuta", ar: "خوف / وحش / خطر / قلق", cat: "ku" },
+      { w: "n", ar: "هممم / تفكير / تردد", cat: "ku" },
+      { w: "namako", ar: "توابل / إضافي / زخرفة / ملح", cat: "ku" },
+      { w: "oko", ar: "عين / بصر (مرادف lukin)", cat: "ku" },
+      { w: "pu", ar: "الكتاب الرسمي الأول لتوكي بونا", cat: "ku" },
+      { w: "soko", ar: "فطر / عيش الغراب", cat: "ku" },
+      { w: "tonsi", ar: "غير ثنائي الجندر / عابر / متنوع", cat: "ku" }
     ];
 
     const WORD_MAP = {};
     DICTIONARY.forEach(item => { WORD_MAP[item.w] = item; });
 
-    // Linku Official Audio & SVG Maps
+    // Linku Official Audio Map
     const LINKU_AUDIO_MAP = {};
-    const LINKU_SVG_MAP = {};
 
     async function loadLinkuResources() {
       const dot = document.getElementById("syncDot");
@@ -1208,36 +1209,16 @@
       try {
         const res = await fetch("https://api.linku.la/v1/words");
         const data = await res.json();
-        const entries = Object.values(data);
-
-        await Promise.all(entries.map(async (entry) => {
+        Object.values(data).forEach(entry => {
           const w = entry.word ? entry.word.toLowerCase() : null;
-          if (!w) return;
-
-          if (entry.audio && entry.audio.length > 0) {
+          if (w && entry.audio && entry.audio.length > 0) {
             LINKU_AUDIO_MAP[w] = entry.audio[0].link;
           }
-
-          if (entry.representations && entry.representations.sitelen_pona_svg) {
-            try {
-              const svgRes = await fetch(entry.representations.sitelen_pona_svg);
-              if (svgRes.ok) {
-                let rawSvg = await svgRes.text();
-                rawSvg = rawSvg
-                  .replace(/stroke="#000000"|stroke="#000"|stroke="black"/gi, 'stroke="currentColor"')
-                  .replace(/fill="#000000"|fill="#000"|fill="black"/gi, 'fill="currentColor"');
-                LINKU_SVG_MAP[w] = rawSvg;
-              }
-            } catch (_) {}
-          }
-        }));
-
+        });
         if (dot) dot.classList.add("online");
-        if (txt) txt.textContent = "Linku متصل";
-        renderDictionary();
-        updatePreview();
+        if (txt) txt.textContent = "الصوت متصل";
       } catch (err) {
-        if (txt) txt.textContent = "وضع محلي";
+        if (txt) txt.textContent = "صوت محلي";
       }
     }
 
@@ -1252,6 +1233,34 @@
         .split("")
         .map(ch => PHONETIC_MAP[ch] || ch)
         .filter(ch => /[aeijklmnopstuw]/.test(ch));
+    }
+
+    // High-Precision Sitelen Pona Glyph Renderer using window.SITELEN_GLYPHS from glyphs.js
+    function renderSingleGlyphSVG(wordLower, size, color) {
+      const glyphData = window.SITELEN_GLYPHS && window.SITELEN_GLYPHS[wordLower];
+      if (glyphData && glyphData.d) {
+        return `<svg viewBox="${glyphData.viewBox}" width="${size}" height="${size}" style="display:inline-block; vertical-align:middle; fill:${color}; flex-shrink:0;" xmlns="http://www.w3.org/2000/svg"><path fill="${color}" d="${glyphData.d}" /></svg>`;
+      }
+      // Clean fallback if glyphs.js hasn't loaded yet or word is unrecognized
+      return `<svg viewBox="0 0 100 100" width="${size}" height="${size}" fill="none" stroke="${color}" stroke-width="7"><circle cx="50" cy="50" r="34" stroke-dasharray="10 6"/></svg>`;
+    }
+
+    function createSVGElement(word, size, color) {
+      const clean = word.replace(/[.,!?;:"]/g, "");
+      if (!clean) return null;
+
+      if (/^[A-Z]/.test(clean)) {
+        const letters = mapToTokiLetters(clean);
+        const innerIcons = letters.map(ch => {
+          const match = DICTIONARY.find(d => d.w.startsWith(ch));
+          const wKey = match ? match.w : "a";
+          return renderSingleGlyphSVG(wKey, Math.round(size * 0.56), color);
+        }).join("");
+
+        return `<div class="cartouche-box" style="color:${color}; border-color:${color};">${innerIcons}</div>`;
+      }
+
+      return renderSingleGlyphSVG(clean.toLowerCase(), size, color);
     }
 
     // Semantic Compound Dictionary (Toki Pona -> Arabic)
@@ -1673,38 +1682,6 @@
       speakText(rawText);
     }
 
-    function renderSingleGlyphSVG(wordLower, size, color) {
-      if (LINKU_SVG_MAP[wordLower]) {
-        return `<div style="width:${size}px; height:${size}px; color:${color}; display:flex; align-items:center; justify-content:center;">${LINKU_SVG_MAP[wordLower].replace(/<svg/i, `<svg style="width:${size}px; height:${size}px;"`)}</div>`;
-      }
-
-      const entry = WORD_MAP[wordLower];
-      const pathData = entry
-        ? entry.svg
-        : `<circle cx="50" cy="50" r="30" stroke-dasharray="8 6"/><text x="50" y="58" text-anchor="middle" fill="${color}" font-size="28" stroke="none">?</text>`;
-
-      return `<svg width="${size}" height="${size}" viewBox="0 0 100 100" fill="none" stroke="${color}" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">${pathData}</svg>`;
-    }
-
-    function createSVGElement(word, size, color) {
-      const clean = word.replace(/[.,!?;:"]/g, "");
-      if (!clean) return null;
-
-      if (/^[A-Z]/.test(clean)) {
-        const letters = mapToTokiLetters(clean);
-        const innerIcons = letters.map(ch => {
-          const match = DICTIONARY.find(d => d.w.startsWith(ch));
-          const wKey = match ? match.w : "a";
-          return renderSingleGlyphSVG(wKey, Math.round(size * 0.52), color);
-        }).join("");
-
-        return `<div class="cartouche-box" style="color:${color}; border-color:${color};">${innerIcons}</div>`;
-      }
-
-      return renderSingleGlyphSVG(clean.toLowerCase(), size, color);
-    }
-
-    // Fixed & Clean Semantic Translator (Toki Pona -> Arabic)
     function translateSentence(rawText) {
       const text = rawText.trim();
       if (!text) {
@@ -1731,7 +1708,6 @@
       };
     }
 
-    // Group known compound phrases into atomic tokens first so words like "ilo tawa" aren't split by "tawa"
     function tokenizeWithCompounds(words) {
       const tokens = [];
       let i = 0;
@@ -1956,7 +1932,7 @@
       filtered.forEach(item => {
         const div = document.createElement("div");
         div.className = "dict-item";
-        const iconHtml = renderSingleGlyphSVG(item.w, 42, "#B8FF29");
+        const iconHtml = renderSingleGlyphSVG(item.w, 46, "#B8FF29");
         div.innerHTML = `
           ${iconHtml}
           <div class="dict-word">${item.w}</div>
@@ -1973,6 +1949,7 @@
       });
     }
 
+    // Export combined high-res SVG using nested <svg> viewBox from glyphs.js
     function buildCombinedSVG() {
       const input = document.getElementById("tpInput").value.trim();
       const words = input.split(/\s+/).filter(Boolean);
@@ -1984,11 +1961,14 @@
 
       let inner = "";
       words.forEach((w, idx) => {
-        const clean = w.replace(/[.,!?;:"]/g, "");
-        const entry = WORD_MAP[clean.toLowerCase()];
+        const clean = w.replace(/[.,!?;:"]/g, "").toLowerCase();
+        const glyphData = window.SITELEN_GLYPHS && window.SITELEN_GLYPHS[clean];
         const x = gap + idx * (size + gap);
-        const path = entry ? entry.svg : '<circle cx="50" cy="50" r="28"/>';
-        inner += `<g transform="translate(${x}, 20) scale(${size / 100})" fill="none" stroke="${color}" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">${path}</g>`;
+        if (glyphData && glyphData.d) {
+          inner += `<svg x="${x}" y="20" width="${size}" height="${size}" viewBox="${glyphData.viewBox}"><path fill="${color}" d="${glyphData.d}" /></svg>`;
+        } else {
+          inner += `<circle cx="${x + size / 2}" cy="${20 + size / 2}" r="30" fill="none" stroke="${color}" stroke-width="6"/>`;
+        }
       });
 
       return `<svg xmlns="http://www.w3.org/2000/svg" width="${totalWidth}" height="${totalHeight}" viewBox="0 0 ${totalWidth} ${totalHeight}">${inner}</svg>`;
