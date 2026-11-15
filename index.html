@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>مترجم ومحوّل توكي بونا — Sitelen Pona</title>
+  <title>توكي بونا — مترجم ومحوّل Sitelen Pona</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -98,9 +98,9 @@
       background: transparent;
       color: var(--text-muted);
       border: 1px solid transparent;
-      padding: 8px 16px;
+      padding: 8px 14px;
       border-radius: 10px;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
@@ -198,7 +198,7 @@
       }
     }
 
-    /* Page Sections (Tabs) */
+    /* Page Sections */
     .container {
       max-width: 1140px;
       margin: 0 auto;
@@ -219,6 +219,123 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Home / Landing Screen */
+    .hero-box {
+      text-align: center;
+      max-width: 680px;
+      margin: 18px auto 30px;
+      padding: 10px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(255, 79, 163, 0.12);
+      border: 1px solid rgba(255, 79, 163, 0.3);
+      padding: 4px 14px;
+      border-radius: 99px;
+      margin-bottom: 14px;
+    }
+
+    .hero-box h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    .hero-box h1 span {
+      color: var(--primary);
+    }
+
+    .hero-box p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .home-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .hero-box h1 {
+        font-size: 1.6rem;
+      }
+      .home-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .home-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .home-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .home-card-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: rgba(184, 255, 41, 0.12);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+    }
+
+    .home-card.pink .home-card-icon {
+      background: rgba(255, 79, 163, 0.12);
+      color: var(--accent);
+    }
+
+    .home-card h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .home-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .home-card-action {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .home-card.pink .home-card-action {
+      color: var(--accent);
+    }
+
+    /* Converter & Translator Layouts */
     .main-grid {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
@@ -256,7 +373,7 @@
 
     textarea {
       width: 100%;
-      height: 125px;
+      height: 120px;
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 12px;
@@ -687,7 +804,7 @@
   <!-- Top Navigation with Mobile Burger Menu -->
   <nav class="navbar">
     <div class="nav-inner">
-      <a href="#" class="brand" onclick="switchTab('converter'); return false;">
+      <a href="#" class="brand" onclick="switchTab('home'); return false;">
         <div class="brand-mark">tp</div>
         <div>
           <span class="brand-title">توكي بونا</span>
@@ -697,7 +814,8 @@
 
       <!-- Desktop Tabs -->
       <div class="nav-links">
-        <button class="nav-btn active" data-tab="converter" onclick="switchTab('converter')">المحوّل والرموز</button>
+        <button class="nav-btn active" data-tab="home" onclick="switchTab('home')">الرئيسية</button>
+        <button class="nav-btn" data-tab="converter" onclick="switchTab('converter')">المحوّل والرموز</button>
         <button class="nav-btn" data-tab="translator" onclick="switchTab('translator')">المترجم (عربي / إنجليزي)</button>
         <button class="nav-btn" data-tab="dictionary" onclick="switchTab('dictionary')">القاموس (137 كلمة)</button>
         <span title="حالة الاتصال بـ Linku" style="font-size:0.78rem; color:var(--text-muted); margin-right:8px;">
@@ -715,16 +833,55 @@
 
     <!-- Mobile Dropdown Menu -->
     <div class="mobile-menu" id="mobileMenu">
-      <button class="nav-btn active" data-tab="converter" onclick="switchTab('converter')">🔣 المحوّل والرموز</button>
+      <button class="nav-btn active" data-tab="home" onclick="switchTab('home')">🏠 الرئيسية</button>
+      <button class="nav-btn" data-tab="converter" onclick="switchTab('converter')">🔣 المحوّل والرموز (Sitelen Pona)</button>
       <button class="nav-btn" data-tab="translator" onclick="switchTab('translator')">🌍 المترجم (عربي / إنجليزي)</button>
-      <button class="nav-btn" data-tab="dictionary" onclick="switchTab('dictionary')">📚 القاموس (137 كلمة)</button>
+      <button class="nav-btn" data-tab="dictionary" onclick="switchTab('dictionary')">📚 القاموس الكامل (137 كلمة)</button>
     </div>
   </nav>
 
   <div class="container">
 
+    <!-- HOME VIEW: Clean Intro + 3 Clear Paths -->
+    <section id="sec-home" class="view-section active">
+      <div class="hero-box">
+        <span class="hero-tag">أبسط لغة في العالم • 137 كلمة فقط</span>
+        <h1>اكتب، ترجم، وارسم برموز <span>توكي بونا</span></h1>
+        <p>توكي بونا (Toki Pona) هي لغة فلسفية مصغّرة تعتمد على تفكيك الأفكار إلى مفاهيم بسيطة ورموز هيروغليفية تُسمى <strong>Sitelen Pona</strong>. اختر الأداة التي تريد البدء بها:</p>
+      </div>
+
+      <div class="home-cards">
+        <div class="home-card" onclick="switchTab('converter')">
+          <div>
+            <div class="home-card-icon">🔣</div>
+            <h3>من توكي بونا إلى الرموز</h3>
+            <p>اكتب كلمات أو جملاً بالتوكي بونا لتحويلها فوراً إلى رموز Sitelen Pona، مع سماع النطق البشري الحقيقي وتحميلها كصور شفافة.</p>
+          </div>
+          <span class="home-card-action">فتح المحوّل ←</span>
+        </div>
+
+        <div class="home-card pink" onclick="switchTab('translator')">
+          <div>
+            <div class="home-card-icon">🌍</div>
+            <h3>الترجمة من العربية والإنجليزية</h3>
+            <p>اكتب جملتك بالعربية أو الإنجليزية ليقوم المترجم بتحويلها إلى توكي بونا مع عرض رموزها ونطقها بضغطة واحدة.</p>
+          </div>
+          <span class="home-card-action">فتح المترجم ←</span>
+        </div>
+
+        <div class="home-card" onclick="switchTab('dictionary')">
+          <div>
+            <div class="home-card-icon">📚</div>
+            <h3>قاموس الـ 137 كلمة</h3>
+            <p>تصفح جميع الكلمات الرسمية في اللغة مصنفة حسب المعنى، مع رمز كل كلمة ونطقها الصوتي وإمكانية إضافتها لجملك.</p>
+          </div>
+          <span class="home-card-action">تصفح القاموس ←</span>
+        </div>
+      </div>
+    </section>
+
     <!-- TAB 1: Converter & Sitelen Pona Stage -->
-    <section id="sec-converter" class="view-section active">
+    <section id="sec-converter" class="view-section">
       <div class="main-grid">
         <div class="card">
           <div class="card-title">
@@ -748,7 +905,7 @@
           <div class="translation-box">
             <div class="translation-label">المعنى بالعربية:</div>
             <div class="translation-result" id="semanticOutput">أنا أريد شراء / الحصول على دراجة</div>
-            <div class="translation-note" id="grammarNote">الفاعل: أنا / نحن | الخبر/الفعل: يريد يحصل على / يشتري | المفعول به: دراجة / مركبة</div>
+            <div class="translation-note" id="grammarNote">الفاعل: أنا | الفعل: أريد الحصول على / شراء | المفعول به: دراجة / مركبة</div>
           </div>
         </div>
 
@@ -894,7 +1051,6 @@
         btn.classList.toggle("active", btn.dataset.tab === tabName);
       });
 
-      // Close mobile drawer after selection
       document.getElementById("mobileMenu").classList.remove("open");
       document.getElementById("burgerBtn").classList.remove("open");
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -902,7 +1058,6 @@
 
     // Complete 137 Official Toki Pona Words (120 pu + 17 ku suli)
     const DICTIONARY = [
-      // Grammar & Pronouns
       { w: "a", ar: "آه / تعجب / تأكيد", cat: "grammar", svg: '<path d="M50 18 L50 65 M50 78 L50 84"/>' },
       { w: "ala", ar: "لا / غير / صفر / لا شيء", cat: "grammar", svg: '<path d="M25 25 L75 75 M75 25 L25 75"/>' },
       { w: "ale", ar: "كل / جميع / الكون / 100", cat: "grammar", svg: '<path d="M30 50 C15 30, 15 70, 30 50 C45 30, 55 70, 70 50 C85 30, 85 70, 70 50 C55 30, 45 70, 30 50 Z"/>' },
@@ -931,8 +1086,6 @@
       { w: "taso", ar: "فقط / لكن / وحيد", cat: "grammar", svg: '<path d="M25 50 L75 50"/><circle cx="50" cy="50" r="6" fill="currentColor"/>' },
       { w: "tawa", ar: "إلى / يذهب / يتحرك", cat: "actions", svg: '<path d="M22 65 L52 35 L78 65 M52 35 L52 75"/>' },
       { w: "toki", ar: "يتكلم / لغة / مرحباً / تواصل", cat: "actions", svg: '<circle cx="50" cy="58" r="22"/><path d="M50 18 L50 30 M32 22 L38 33 M68 22 L62 33"/>' },
-
-      // Actions & Verbs
       { w: "alasa", ar: "يصطاد / يبحث / يجمع", cat: "actions", svg: '<path d="M25 75 L75 25 M52 25 L75 25 L75 48"/><circle cx="38" cy="38" r="10"/>' },
       { w: "awen", ar: "ينتظر / يبقى / يحمي", cat: "actions", svg: '<path d="M25 75 L25 35 Q50 15 75 35 L75 75"/>' },
       { w: "jaki", ar: "قذر / مقزز / نفايات", cat: "qualities", svg: '<path d="M25 35 Q40 20 50 40 Q60 60 75 45 M30 65 Q50 50 70 70"/>' },
@@ -956,8 +1109,6 @@
       { w: "unpa", ar: "علاقة حميمية / زواج", cat: "actions", svg: '<path d="M50 75 C22 55, 22 28, 38 28 C46 28, 50 35, 50 40 C50 35, 54 28, 62 28 C78 28, 78 55, 50 75 Z M35 50 L65 50"/>' },
       { w: "utala", ar: "يقاتل / صراع / ينافس / حرب", cat: "actions", svg: '<path d="M25 75 L75 25 M75 75 L25 25 M22 62 L38 78 M78 62 L62 78"/>' },
       { w: "wile", ar: "يريد / يحتاج / يجب / رغبة", cat: "actions", svg: '<path d="M25 35 Q38 65 50 42 Q62 65 75 35"/>' },
-
-      // Nature, People & Animals
       { w: "akesi", ar: "زواحف / برمائيات / سحلية", cat: "nature", svg: '<path d="M25 65 Q45 35 72 35 L78 28 M40 52 L30 68 M58 42 L68 58"/>' },
       { w: "anpa", ar: "أسفل / تحت / متواضع / أرض", cat: "nature", svg: '<path d="M22 30 L78 30 M50 42 L50 76 M36 62 L50 76 L64 62"/>' },
       { w: "jan", ar: "شخص / إنسان / بشري", cat: "nature", svg: '<circle cx="50" cy="32" r="14"/><path d="M26 78 C26 52, 74 52, 74 78"/>' },
@@ -982,8 +1133,6 @@
       { w: "suno", ar: "شمس / ضوء / سطوع / نهار", cat: "nature", svg: '<circle cx="50" cy="50" r="18"/><path d="M50 16 L50 24 M50 76 L50 84 M16 50 L24 50 M76 50 L84 50 M26 26 L32 32 M68 68 L74 74 M74 26 L68 32 M32 68 L26 74"/>' },
       { w: "telo", ar: "ماء / سائل / مشروب / يغسل", cat: "nature", svg: '<path d="M20 38 Q35 28 50 38 T80 38 M20 60 Q35 50 50 60 T80 60"/>' },
       { w: "waso", ar: "طائر / مخلوق مجنح", cat: "nature", svg: '<path d="M20 48 Q36 30 50 48 Q64 30 80 48 M50 48 L50 68"/>' },
-
-      // Objects, Places & Body
       { w: "esun", ar: "سوق / متجر / تجارة / بيع", cat: "objects", svg: '<path d="M22 38 L78 38 L72 74 L28 74 Z M32 38 L38 22 L62 22 L68 38"/>' },
       { w: "ilo", ar: "أداة / آلة / جهاز", cat: "objects", svg: '<path d="M50 38 L50 80 M28 38 L72 38 L66 24 L34 24 Z"/>' },
       { w: "len", ar: "ملابس / قماش / غطاء", cat: "objects", svg: '<path d="M24 34 L38 24 L62 24 L76 34 L68 46 L62 42 L62 76 L38 76 L38 42 L32 46 Z"/>' },
@@ -1005,8 +1154,6 @@
       { w: "tenpo", ar: "وقت / زمن / لحظة / فترة", cat: "objects", svg: '<circle cx="50" cy="50" r="26"/><path d="M50 32 L50 50 L64 58"/>' },
       { w: "tomo", ar: "بيت / غرفة / مبنى / مكان داخلي", cat: "objects", svg: '<path d="M20 48 L50 22 L80 48 M28 44 L28 76 L72 76 L72 44"/>' },
       { w: "uta", ar: "فم / شفتان / قبلة / مدخل", cat: "objects", svg: '<ellipse cx="50" cy="50" rx="26" ry="14"/><path d="M24 50 L76 50"/>' },
-
-      // Qualities, Colors & Numbers
       { w: "jelo", ar: "أصفر / ذهبي / فاتح", cat: "qualities", svg: '<polygon points="50,22 22,72 78,72"/><circle cx="50" cy="54" r="7"/>' },
       { w: "laso", ar: "أزرق / أخضر", cat: "qualities", svg: '<polygon points="50,22 22,72 78,72"/><path d="M36 56 Q50 46 64 56"/>' },
       { w: "lete", ar: "بارد / ثلج / نيء", cat: "qualities", svg: '<path d="M50 20 L50 80 M20 50 L80 50 M30 30 L70 70 M70 30 L30 70"/>' },
@@ -1028,8 +1175,6 @@
       { w: "wan", ar: "واحد (1) / متحد / فرد", cat: "qualities", svg: '<path d="M50 24 L50 76"/>' },
       { w: "wawa", ar: "قوي / طاقة / واثق / مكثف", cat: "qualities", svg: '<path d="M26 70 L38 32 L50 56 L62 32 L74 70"/>' },
       { w: "weka", ar: "بعيد / غائب / يزيل / يتجاهل", cat: "qualities", svg: '<rect x="28" y="28" width="44" height="44" stroke-dasharray="8 6"/>' },
-
-      // ku suli (17 Official Post-pu Words)
       { w: "epiku", ar: "ملحمي / رائع / مذهل", cat: "ku", svg: '<path d="M24 44 Q50 74 76 44 M50 18 L54 28 L64 30 L56 36 L58 46 L50 40 L42 46 L44 36 L36 30 L46 28 Z"/>' },
       { w: "jasima", ar: "يعكس / مرآة / مقابل", cat: "ku", svg: '<path d="M50 20 L50 80 M24 38 L40 50 L24 62 M76 38 L60 50 L76 62"/>' },
       { w: "kijetesantakalu", ar: "راكون / ابن عرس / حيوان فروي", cat: "ku", svg: '<path d="M25 65 L32 35 L46 45 L58 35 L65 65 M22 50 L36 50 M54 50 L68 50"/>' },
@@ -1096,7 +1241,6 @@
       }
     }
 
-    // Auto-Phonetic Map for foreign letters inside Proper Noun Cartouches
     const PHONETIC_MAP = {
       y: "j", r: "l", g: "k", q: "k", c: "k", x: "s",
       d: "t", z: "s", b: "p", f: "p", v: "w", h: "k"
@@ -1162,9 +1306,9 @@
       "moku lili": "وجبة خفيفة / سناك",
       "moku suli": "وجبة رئيسية / وليمة",
       "moku lete": "آيس كريم / طعام بارد",
-      "kama jo": "يحصل على / يشتري / يتلقى",
-      "kama sona": "يتعلم / يكتشف",
-      "kama lukin": "يجد / يلاحظ",
+      "kama jo": "شراء / الحصول على",
+      "kama sona": "تعلّم / اكتشاف",
+      "kama lukin": "إيجاد / ملاحظة",
       "kama pona": "مرحباً بك / أهلاً وسهلاً",
       "tawa pona": "وداعاً / مع السلامة",
       "lape pona": "تصبح على خير / نوماً هنيئاً",
@@ -1195,452 +1339,84 @@
       "wile lape": "نعسان / يريد النوم"
     };
 
-    // Expanded English -> Toki Pona Dictionary
     const EN_TO_TP_PHRASES = [
-      ["hello", "toki"],
-      ["hi", "toki"],
-      ["welcome", "kama pona"],
-      ["goodbye", "tawa pona"],
-      ["bye", "tawa pona"],
-      ["good night", "lape pona"],
-      ["good morning", "tenpo suno pona"],
-      ["thank you", "sina pona"],
-      ["thanks", "sina pona"],
-      ["sorry", "mi pakala"],
-      ["excuse me", "mi pakala"],
-      ["how are you", "sina pilin seme"],
-      ["what is your name", "nimi sina li seme"],
-      ["my name is", "nimi mi li"],
-      ["the best", "pona mute"],
-      ["best", "pona mute"],
-      ["better", "pona mute"],
-      ["awesome", "epiku"],
-      ["amazing", "epiku"],
-      ["wonderful", "pona mute"],
-      ["fantastic", "epiku"],
-      ["excellent", "pona mute"],
-      ["perfect", "pona ale"],
-      ["the worst", "ike mute"],
-      ["worst", "ike mute"],
-      ["worse", "ike mute"],
-      ["terrible", "ike mute"],
-      ["awful", "ike mute"],
-      ["horrible", "ike mute"],
-      ["bigger", "suli mute"],
-      ["biggest", "suli mute"],
-      ["huge", "suli mute"],
-      ["giant", "suli mute"],
-      ["enormous", "suli mute"],
-      ["smaller", "lili mute"],
-      ["smallest", "lili mute"],
-      ["tiny", "lili mute"],
-      ["faster", "wawa mute"],
-      ["fastest", "wawa mute"],
-      ["quick", "wawa"],
-      ["quickly", "wawa"],
-      ["slow", "tawa lili"],
-      ["slowly", "tawa lili"],
-      ["stronger", "wawa mute"],
-      ["strongest", "wawa mute"],
-      ["smart", "sona mute"],
-      ["intelligent", "sona mute"],
-      ["clever", "sona"],
-      ["wise", "sona"],
-      ["stupid", "sona ala"],
-      ["difficult", "ike"],
-      ["hard", "kiwen"],
-      ["easy", "pona"],
-      ["simple", "pona"],
-      ["complex", "ike"],
-      ["complicated", "ike"],
-      ["important", "suli"],
-      ["famous", "suli"],
-      ["beautiful", "pona lukin"],
-      ["pretty", "pona lukin"],
-      ["handsome", "pona lukin"],
-      ["ugly", "ike lukin"],
-      ["funny", "musi"],
-      ["interesting", "musi"],
-      ["boring", "musi ala"],
-      ["true", "lon"],
-      ["real", "lon"],
-      ["false", "lon ala"],
-      ["fake", "lon ala"],
-      ["different", "ante"],
-      ["other", "ante"],
-      ["another", "ante"],
-      ["same", "sama"],
-      ["similar", "sama"],
-      ["the world", "ma ale"],
-      ["world", "ma ale"],
-      ["universe", "ale"],
-      ["earth", "ma"],
-      ["planet", "ma sike"],
-      ["nature", "ma kasi"],
-      ["environment", "ma"],
-      ["life", "lon"],
-      ["alive", "lon"],
-      ["death", "moli"],
-      ["peace", "pona"],
-      ["war", "utala"],
-      ["problem", "ike"],
-      ["solution", "nasin pona"],
-      ["idea", "sona"],
-      ["thought", "toki insa"],
-      ["mind", "pilin"],
-      ["heart", "pilin"],
-      ["soul", "kon"],
-      ["spirit", "kon"],
-      ["power", "wawa"],
-      ["energy", "wawa"],
-      ["truth", "lon"],
-      ["lie", "toki lon ala"],
-      ["future", "tenpo kama"],
-      ["past", "tenpo pini"],
-      ["present", "tenpo ni"],
-      ["history", "tenpo pini"],
-      ["story", "lipu toki"],
-      ["news", "sona sin"],
-      ["information", "sona"],
-      ["knowledge", "sona"],
-      ["science", "sona"],
-      ["art", "musi"],
-      ["culture", "nasin"],
-      ["way", "nasin"],
-      ["method", "nasin"],
-      ["road", "nasin"],
-      ["street", "nasin"],
-      ["thing", "ijo"],
-      ["something", "ijo"],
-      ["everything", "ijo ale"],
-      ["nothing", "ijo ala"],
-      ["anything", "ijo"],
-      ["place", "ma"],
-      ["somewhere", "ma"],
-      ["everywhere", "ma ale"],
-      ["my friend", "jan pona mi"],
-      ["your friend", "jan pona sina"],
-      ["friend", "jan pona"],
-      ["friends", "jan pona mute"],
-      ["enemy", "jan ike"],
-      ["family", "kulupu mama"],
-      ["group", "kulupu"],
-      ["team", "kulupu"],
-      ["community", "kulupu"],
-      ["leader", "jan lawa"],
-      ["king", "jan lawa"],
-      ["president", "jan lawa"],
-      ["boss", "jan lawa"],
-      ["doctor", "jan misikeke"],
-      ["teacher", "jan sona"],
-      ["student", "jan kama sona"],
-      ["worker", "jan pali"],
-      ["person", "jan"],
-      ["people", "jan mute"],
-      ["human", "jan"],
-      ["man", "mije"],
-      ["men", "mije mute"],
-      ["woman", "meli"],
-      ["women", "meli mute"],
-      ["child", "jan lili"],
-      ["children", "jan lili mute"],
-      ["kid", "jan lili"],
-      ["baby", "jan lili"],
-      ["boy", "jan mije lili"],
-      ["girl", "jan meli lili"],
-      ["mother", "mama"],
-      ["mom", "mama"],
-      ["father", "mama"],
-      ["dad", "mama"],
-      ["parents", "mama"],
-      ["brother", "jan sama"],
-      ["sister", "jan sama"],
-      ["bicycle", "ilo tawa"],
-      ["bike", "ilo tawa"],
-      ["car", "tomo tawa"],
-      ["bus", "tomo tawa suli"],
-      ["train", "tomo tawa linja"],
-      ["airplane", "tomo tawa kon"],
-      ["plane", "tomo tawa kon"],
-      ["boat", "tomo tawa telo"],
-      ["ship", "tomo tawa telo"],
-      ["phone", "ilo toki"],
-      ["smartphone", "ilo toki"],
-      ["mobile", "ilo toki"],
-      ["computer", "ilo sona"],
-      ["laptop", "ilo sona"],
-      ["internet", "linja sona"],
-      ["website", "lipu sona"],
-      ["camera", "ilo lukin"],
-      ["glasses", "ilo lukin"],
-      ["lamp", "ilo suno"],
-      ["light", "suno"],
-      ["school", "tomo sona"],
-      ["university", "tomo sona suli"],
-      ["library", "tomo lipu"],
-      ["hospital", "tomo misikeke"],
-      ["pharmacy", "tomo misikeke"],
-      ["restaurant", "tomo moku"],
-      ["kitchen", "tomo moku"],
-      ["shop", "tomo esun"],
-      ["store", "tomo esun"],
-      ["market", "esun"],
-      ["home", "tomo"],
-      ["house", "tomo"],
-      ["building", "tomo suli"],
-      ["room", "tomo"],
-      ["city", "ma tomo"],
-      ["town", "ma tomo"],
-      ["village", "ma tomo lili"],
-      ["country", "ma"],
-      ["coffee", "telo wawa"],
-      ["tea", "telo seli"],
-      ["juice", "telo suwi"],
-      ["milk", "telo walo"],
-      ["rain", "telo sewi"],
-      ["tears", "telo lukin"],
-      ["cold water", "telo lete"],
-      ["hot water", "telo seli"],
-      ["water", "telo"],
-      ["ice cream", "moku lete suwi"],
-      ["ice", "telo kiwen"],
-      ["fire", "seli"],
-      ["food", "moku"],
-      ["meal", "moku"],
-      ["fruit", "kili"],
-      ["vegetable", "kili"],
-      ["apple", "kili loje"],
-      ["bread", "pan"],
-      ["rice", "pan"],
-      ["meat", "moku soweli"],
-      ["fish", "kala"],
-      ["bird", "waso"],
-      ["dog", "soweli"],
-      ["cat", "soweli"],
-      ["animal", "soweli"],
-      ["raccoon", "kijetesantakalu"],
-      ["insect", "pipi"],
-      ["bug", "pipi"],
-      ["tree", "kasi suli"],
-      ["plant", "kasi"],
-      ["flower", "kasi kule"],
-      ["forest", "ma kasi"],
-      ["sea", "ma telo"],
-      ["ocean", "ma telo suli"],
-      ["river", "telo linja"],
-      ["mountain", "nena suli"],
-      ["rock", "kiwen"],
-      ["stone", "kiwen"],
-      ["sun", "suno"],
-      ["moon", "mun"],
-      ["star", "mun"],
-      ["stars", "mun mute"],
-      ["sky", "sewi"],
-      ["cloud", "kon walo"],
-      ["wind", "kon tawa"],
-      ["air", "kon"],
-      ["night", "tenpo pimeja"],
-      ["evening", "tenpo pimeja"],
-      ["morning", "tenpo suno sin"],
-      ["today", "tenpo suno ni"],
-      ["day", "tenpo suno"],
-      ["tomorrow", "tenpo suno kama"],
-      ["yesterday", "tenpo suno pini"],
-      ["now", "tenpo ni"],
-      ["time", "tenpo"],
-      ["year", "sike suno"],
-      ["book", "lipu sona"],
-      ["paper", "lipu"],
-      ["letter", "lipu toki"],
-      ["message", "lipu toki"],
-      ["money", "mani"],
-      ["video", "sitelen tawa"],
-      ["movie", "sitelen tawa"],
-      ["film", "sitelen tawa"],
-      ["picture", "sitelen"],
-      ["image", "sitelen"],
-      ["symbol", "sitelen"],
-      ["music", "kalama musi"],
-      ["song", "kalama musi"],
-      ["sound", "kalama"],
-      ["game", "musi"],
-      ["medicine", "misikeke"],
-      ["clothes", "len"],
-      ["shirt", "len"],
-      ["bag", "poki"],
-      ["box", "poki"],
-      ["cup", "poki telo"],
-      ["table", "supa"],
-      ["bed", "supa lape"],
-      ["door", "lupa tomo"],
-      ["window", "lupa lukin"],
-      ["want to", "wile"],
-      ["wants to", "wile"],
-      ["want", "wile"],
-      ["wants", "wile"],
-      ["need", "wile"],
-      ["needs", "wile"],
-      ["like", "pona"],
-      ["likes", "pona"],
-      ["love", "olin"],
-      ["loves", "olin"],
-      ["buy", "kama jo"],
-      ["buys", "kama jo"],
-      ["get", "kama jo"],
-      ["gets", "kama jo"],
-      ["take", "lanpan"],
-      ["have", "jo"],
-      ["has", "jo"],
-      ["learn", "kama sona"],
-      ["learning", "kama sona"],
-      ["study", "kama sona"],
-      ["teach", "pana e sona"],
-      ["know", "sona"],
-      ["knows", "sona"],
-      ["understand", "sona"],
-      ["think", "pilin"],
-      ["feel", "pilin"],
-      ["speak", "toki"],
-      ["speaks", "toki"],
-      ["talk", "toki"],
-      ["say", "toki"],
-      ["says", "toki"],
-      ["language", "toki"],
-      ["languages", "toki mute"],
-      ["eat", "moku"],
-      ["eats", "moku"],
-      ["eating", "moku"],
-      ["drink", "moku"],
-      ["drinks", "moku"],
-      ["drinking", "moku"],
-      ["sleep", "lape"],
-      ["sleeps", "lape"],
-      ["sleeping", "lape"],
-      ["go", "tawa"],
-      ["goes", "tawa"],
-      ["going", "tawa"],
-      ["walk", "tawa noka"],
-      ["run", "tawa wawa"],
-      ["fly", "tawa kon"],
-      ["flies", "tawa kon"],
-      ["come", "kama"],
-      ["comes", "kama"],
-      ["arrive", "kama"],
-      ["see", "lukin"],
-      ["sees", "lukin"],
-      ["look", "lukin"],
-      ["watch", "lukin"],
-      ["find", "kama lukin"],
-      ["search", "alasa"],
-      ["read", "lukin e lipu"],
-      ["write", "sitelen"],
-      ["draw", "sitelen"],
-      ["hear", "kute"],
-      ["listen", "kute"],
-      ["work", "pali"],
-      ["works", "pali"],
-      ["make", "pali"],
-      ["build", "pali"],
-      ["create", "pali"],
-      ["do", "pali"],
-      ["give", "pana"],
-      ["gives", "pana"],
-      ["send", "pana"],
-      ["help", "pana e pona"],
-      ["open", "open"],
-      ["start", "open"],
-      ["begin", "open"],
-      ["finish", "pini"],
-      ["end", "pini"],
-      ["stop", "pini"],
-      ["wait", "awen"],
-      ["stay", "awen"],
-      ["keep", "awen"],
-      ["die", "moli"],
-      ["dead", "moli"],
-      ["kill", "moli"],
-      ["fight", "utala"],
-      ["play", "musi"],
-      ["can", "ken"],
-      ["able", "ken"],
-      ["good", "pona"],
-      ["nice", "pona"],
-      ["great", "pona mute"],
-      ["bad", "ike"],
-      ["evil", "ike"],
-      ["big", "suli"],
-      ["large", "suli"],
-      ["tall", "suli"],
-      ["long", "suli"],
-      ["small", "lili"],
-      ["little", "lili"],
-      ["short", "lili"],
-      ["new", "sin"],
-      ["fresh", "sin"],
-      ["old", "tenpo pini"],
-      ["sweet", "suwi"],
-      ["cute", "suwi"],
-      ["hot", "seli"],
-      ["warm", "seli"],
-      ["cold", "lete"],
-      ["cool", "lete"],
-      ["strong", "wawa"],
-      ["powerful", "wawa"],
-      ["fast", "wawa"],
-      ["happy", "pilin pona"],
-      ["glad", "pilin pona"],
-      ["sad", "pilin ike"],
-      ["angry", "pilin utala"],
-      ["scared", "pilin monsuta"],
-      ["afraid", "pilin monsuta"],
-      ["white", "walo"],
-      ["black", "pimeja"],
-      ["dark", "pimeja"],
-      ["red", "loje"],
-      ["pink", "loje walo"],
-      ["yellow", "jelo"],
-      ["blue", "laso"],
-      ["green", "laso"],
-      ["color", "kule"],
-      ["colorful", "kule"],
-      ["many", "mute"],
-      ["much", "mute"],
-      ["very", "mute"],
-      ["a lot", "mute"],
-      ["all", "ale"],
-      ["every", "ale"],
-      ["one", "wan"],
-      ["two", "tu"],
-      ["not", "ala"],
-      ["no", "ala"],
-      ["nothing", "ala"],
-      ["what", "seme"],
-      ["which", "seme"],
-      ["where", "lon seme"],
-      ["who", "jan seme"],
-      ["why", "tan seme"],
-      ["how", "nasin seme"],
-      ["when", "tenpo seme"],
-      ["in", "lon"],
-      ["on", "lon"],
-      ["at", "lon"],
-      ["inside", "lon insa"],
-      ["to", "tawa"],
-      ["for", "tawa"],
-      ["from", "tan"],
-      ["because", "tan"],
-      ["with", "kepeken"],
-      ["using", "kepeken"],
-      ["by", "kepeken"],
-      ["and", "en"],
-      ["or", "anu"],
-      ["but", "taso"],
-      ["however", "taso"],
-      ["only", "taso"],
-      ["just", "taso"],
-      ["also", "kin"],
-      ["too", "kin"],
-      ["really", "kin"]
+      ["hello", "toki"], ["hi", "toki"], ["welcome", "kama pona"], ["goodbye", "tawa pona"],
+      ["bye", "tawa pona"], ["good night", "lape pona"], ["good morning", "tenpo suno pona"],
+      ["thank you", "sina pona"], ["thanks", "sina pona"], ["sorry", "mi pakala"],
+      ["how are you", "sina pilin seme"], ["what is your name", "nimi sina li seme"],
+      ["my name is", "nimi mi li"], ["the best", "pona mute"], ["best", "pona mute"],
+      ["better", "pona mute"], ["awesome", "epiku"], ["amazing", "epiku"],
+      ["wonderful", "pona mute"], ["fantastic", "epiku"], ["excellent", "pona mute"],
+      ["perfect", "pona ale"], ["the worst", "ike mute"], ["worst", "ike mute"],
+      ["worse", "ike mute"], ["terrible", "ike mute"], ["awful", "ike mute"],
+      ["bigger", "suli mute"], ["biggest", "suli mute"], ["huge", "suli mute"],
+      ["smaller", "lili mute"], ["smallest", "lili mute"], ["tiny", "lili mute"],
+      ["faster", "wawa mute"], ["fastest", "wawa mute"], ["quick", "wawa"],
+      ["slow", "tawa lili"], ["stronger", "wawa mute"], ["smart", "sona mute"],
+      ["intelligent", "sona mute"], ["clever", "sona"], ["wise", "sona"],
+      ["difficult", "ike"], ["hard", "kiwen"], ["easy", "pona"], ["simple", "pona"],
+      ["important", "suli"], ["beautiful", "pona lukin"], ["funny", "musi"],
+      ["true", "lon"], ["real", "lon"], ["false", "lon ala"], ["different", "ante"],
+      ["same", "sama"], ["the world", "ma ale"], ["world", "ma ale"], ["universe", "ale"],
+      ["earth", "ma"], ["life", "lon"], ["peace", "pona"], ["war", "utala"],
+      ["problem", "ike"], ["solution", "nasin pona"], ["idea", "sona"],
+      ["future", "tenpo kama"], ["past", "tenpo pini"], ["present", "tenpo ni"],
+      ["story", "lipu toki"], ["knowledge", "sona"], ["science", "sona"],
+      ["art", "musi"], ["way", "nasin"], ["road", "nasin"], ["thing", "ijo"],
+      ["everything", "ijo ale"], ["nothing", "ijo ala"], ["place", "ma"],
+      ["my friend", "jan pona mi"], ["your friend", "jan pona sina"],
+      ["friend", "jan pona"], ["friends", "jan pona mute"], ["enemy", "jan ike"],
+      ["family", "kulupu mama"], ["group", "kulupu"], ["leader", "jan lawa"],
+      ["doctor", "jan misikeke"], ["teacher", "jan sona"], ["student", "jan kama sona"],
+      ["person", "jan"], ["people", "jan mute"], ["man", "mije"], ["woman", "meli"],
+      ["child", "jan lili"], ["children", "jan lili mute"], ["mother", "mama"],
+      ["father", "mama"], ["brother", "jan sama"], ["sister", "jan sama"],
+      ["bicycle", "ilo tawa"], ["bike", "ilo tawa"], ["car", "tomo tawa"],
+      ["bus", "tomo tawa suli"], ["airplane", "tomo tawa kon"], ["plane", "tomo tawa kon"],
+      ["boat", "tomo tawa telo"], ["ship", "tomo tawa telo"], ["phone", "ilo toki"],
+      ["computer", "ilo sona"], ["laptop", "ilo sona"], ["camera", "ilo lukin"],
+      ["glasses", "ilo lukin"], ["lamp", "ilo suno"], ["light", "suno"],
+      ["school", "tomo sona"], ["university", "tomo sona suli"], ["library", "tomo lipu"],
+      ["hospital", "tomo misikeke"], ["restaurant", "tomo moku"], ["shop", "tomo esun"],
+      ["home", "tomo"], ["house", "tomo"], ["city", "ma tomo"], ["country", "ma"],
+      ["coffee", "telo wawa"], ["tea", "telo seli"], ["juice", "telo suwi"],
+      ["rain", "telo sewi"], ["cold water", "telo lete"], ["hot water", "telo seli"],
+      ["water", "telo"], ["ice cream", "moku lete suwi"], ["fire", "seli"],
+      ["food", "moku"], ["fruit", "kili"], ["apple", "kili loje"], ["bread", "pan"],
+      ["fish", "kala"], ["bird", "waso"], ["dog", "soweli"], ["cat", "soweli"],
+      ["animal", "soweli"], ["raccoon", "kijetesantakalu"], ["insect", "pipi"],
+      ["tree", "kasi suli"], ["plant", "kasi"], ["forest", "ma kasi"],
+      ["sea", "ma telo"], ["ocean", "ma telo suli"], ["mountain", "nena suli"],
+      ["sun", "suno"], ["moon", "mun"], ["star", "mun"], ["sky", "sewi"],
+      ["night", "tenpo pimeja"], ["morning", "tenpo suno sin"], ["today", "tenpo suno ni"],
+      ["day", "tenpo suno"], ["tomorrow", "tenpo suno kama"], ["yesterday", "tenpo suno pini"],
+      ["now", "tenpo ni"], ["time", "tenpo"], ["book", "lipu sona"], ["paper", "lipu"],
+      ["message", "lipu toki"], ["money", "mani"], ["video", "sitelen tawa"],
+      ["movie", "sitelen tawa"], ["picture", "sitelen"], ["music", "kalama musi"],
+      ["song", "kalama musi"], ["game", "musi"], ["medicine", "misikeke"],
+      ["want to", "wile"], ["want", "wile"], ["need", "wile"], ["like", "pona"],
+      ["love", "olin"], ["buy", "kama jo"], ["get", "kama jo"], ["have", "jo"],
+      ["learn", "kama sona"], ["learning", "kama sona"], ["study", "kama sona"],
+      ["know", "sona"], ["understand", "sona"], ["speak", "toki"], ["talk", "toki"],
+      ["language", "toki"], ["languages", "toki mute"], ["eat", "moku"],
+      ["eating", "moku"], ["drink", "moku"], ["drinking", "moku"], ["sleep", "lape"],
+      ["go", "tawa"], ["going", "tawa"], ["walk", "tawa noka"], ["run", "tawa wawa"],
+      ["fly", "tawa kon"], ["come", "kama"], ["see", "lukin"], ["look", "lukin"],
+      ["watch", "lukin"], ["read", "lukin e lipu"], ["write", "sitelen"],
+      ["hear", "kute"], ["listen", "kute"], ["work", "pali"], ["make", "pali"],
+      ["do", "pali"], ["give", "pana"], ["send", "pana"], ["open", "open"],
+      ["finish", "pini"], ["die", "moli"], ["fight", "utala"], ["play", "musi"],
+      ["can", "ken"], ["good", "pona"], ["nice", "pona"], ["great", "pona mute"],
+      ["bad", "ike"], ["big", "suli"], ["small", "lili"], ["new", "sin"],
+      ["sweet", "suwi"], ["hot", "seli"], ["cold", "lete"], ["strong", "wawa"],
+      ["fast", "wawa"], ["happy", "pilin pona"], ["sad", "pilin ike"],
+      ["white", "walo"], ["black", "pimeja"], ["red", "loje"], ["yellow", "jelo"],
+      ["blue", "laso"], ["green", "laso"], ["many", "mute"], ["very", "mute"],
+      ["all", "ale"], ["every", "ale"], ["not", "ala"], ["no", "ala"],
+      ["what", "seme"], ["where", "lon seme"], ["who", "jan seme"], ["why", "tan seme"],
+      ["how", "nasin seme"], ["in", "lon"], ["on", "lon"], ["at", "lon"],
+      ["to", "tawa"], ["for", "tawa"], ["from", "tan"], ["with", "kepeken"],
+      ["by", "kepeken"], ["and", "en"], ["or", "anu"], ["but", "taso"], ["only", "taso"]
     ];
 
     const STEM_MAP = {
@@ -1784,7 +1560,6 @@
       return finalTp;
     }
 
-    // Arabic -> English Pivot -> Toki Pona
     async function translateArabicToTP() {
       const arInput = document.getElementById("arToTpInput").value.trim();
       const resEl = document.getElementById("arTpResult");
@@ -1846,7 +1621,6 @@
     let activeAudio = null;
     let isSpeakingCancelled = false;
 
-    // Hybrid Audio Engine (Linku Human Audio + Fallback Synthesis)
     async function speakText(text) {
       const clean = text.trim();
       if (!clean) return;
@@ -1930,7 +1704,7 @@
       return renderSingleGlyphSVG(clean.toLowerCase(), size, color);
     }
 
-    // Smart Semantic Translator (Toki Pona -> Arabic)
+    // Fixed & Clean Semantic Translator (Toki Pona -> Arabic)
     function translateSentence(rawText) {
       const text = rawText.trim();
       if (!text) {
@@ -1941,12 +1715,12 @@
       if (laParts.length > 1) {
         const translatedClauses = laParts.map((clause, idx) => {
           const res = translateClause(clause);
-          if (idx === 0) return `عندما / في سياق (${res.text})`;
+          if (idx === 0) return `في (${res.text})`;
           return res.text;
         });
         return {
-          translation: translatedClauses.join(" ← فإنّ: "),
-          note: "جملة شرطية أو ظرفية باستخدام أداة السياق (la)"
+          translation: translatedClauses.join("، "),
+          note: "جملة سياقية باستخدام (la)"
         };
       }
 
@@ -1957,98 +1731,117 @@
       };
     }
 
+    // Group known compound phrases into atomic tokens first so words like "ilo tawa" aren't split by "tawa"
+    function tokenizeWithCompounds(words) {
+      const tokens = [];
+      let i = 0;
+      while (i < words.length) {
+        if (i + 2 < words.length) {
+          const tri = `${words[i]} ${words[i+1]} ${words[i+2]}`.toLowerCase();
+          if (COMPOUNDS[tri]) {
+            tokens.push({ raw: `${words[i]} ${words[i+1]} ${words[i+2]}`, ar: COMPOUNDS[tri].split("/")[0].trim(), isCompound: true });
+            i += 3;
+            continue;
+          }
+        }
+        if (i + 1 < words.length) {
+          const bi = `${words[i]} ${words[i+1]}`.toLowerCase();
+          if (COMPOUNDS[bi]) {
+            tokens.push({ raw: `${words[i]} ${words[i+1]}`, ar: COMPOUNDS[bi].split("/")[0].trim(), isCompound: true });
+            i += 2;
+            continue;
+          }
+        }
+        tokens.push({ raw: words[i], ar: null, isCompound: false });
+        i++;
+      }
+      return tokens;
+    }
+
     function translateClause(clause) {
       const cleanClause = clause.replace(/[.,!?;:"]/g, "").trim();
       const lowerClause = cleanClause.toLowerCase();
 
       if (COMPOUNDS[lowerClause]) {
         return {
-          text: COMPOUNDS[lowerClause],
-          note: "تعبير اصطلاحي مركب في توكي بونا"
+          text: COMPOUNDS[lowerClause].split("/")[0].trim(),
+          note: "تعبير اصطلاحي مركب"
         };
       }
 
-      const words = cleanClause.split(/\s+/);
-      let subjectWords = [];
-      let predicateWords = [];
-      let objectWords = [];
-      let prepWords = [];
+      const rawWords = cleanClause.split(/\s+/);
+      const tokens = tokenizeWithCompounds(rawWords);
+
+      let subjectTokens = [];
+      let predicateTokens = [];
+      let objectTokens = [];
+      let prepTokens = [];
 
       let mode = "subject";
-      if ((words[0].toLowerCase() === "mi" || words[0].toLowerCase() === "sina") && words.length > 1 && words[1].toLowerCase() !== "li") {
-        subjectWords.push(words[0]);
+      const firstLower = tokens[0].raw.toLowerCase();
+
+      if ((firstLower === "mi" || firstLower === "sina") && tokens.length > 1 && tokens[1].raw.toLowerCase() !== "li") {
+        subjectTokens.push(tokens[0]);
         mode = "predicate";
-        for (let i = 1; i < words.length; i++) {
-          const w = words[i].toLowerCase();
-          if (w === "e") { mode = "object"; continue; }
-          if (w === "kepeken" || w === "lon" || w === "tawa" || w === "tan") {
-            if (mode !== "subject" && i > 1) {
-              mode = "prep";
-              prepWords.push(words[i]);
-              continue;
-            }
-          }
-          if (mode === "predicate") predicateWords.push(words[i]);
-          else if (mode === "object") objectWords.push(words[i]);
-          else if (mode === "prep") prepWords.push(words[i]);
-        }
-      } else {
-        for (let i = 0; i < words.length; i++) {
-          const w = words[i].toLowerCase();
-          if (w === "li" && mode === "subject") { mode = "predicate"; continue; }
-          if (w === "e") { mode = "object"; continue; }
-          if ((w === "kepeken" || w === "lon" || w === "tan") && mode !== "subject") {
+        for (let i = 1; i < tokens.length; i++) {
+          const w = tokens[i].raw.toLowerCase();
+          if (!tokens[i].isCompound && w === "e") { mode = "object"; continue; }
+          if (!tokens[i].isCompound && (w === "kepeken" || w === "lon" || w === "tawa" || w === "tan")) {
             mode = "prep";
-            prepWords.push(words[i]);
+            prepTokens.push(tokens[i]);
             continue;
           }
-          if (mode === "subject") subjectWords.push(words[i]);
-          else if (mode === "predicate") predicateWords.push(words[i]);
-          else if (mode === "object") objectWords.push(words[i]);
-          else if (mode === "prep") prepWords.push(words[i]);
+          if (mode === "predicate") predicateTokens.push(tokens[i]);
+          else if (mode === "object") objectTokens.push(tokens[i]);
+          else if (mode === "prep") prepTokens.push(tokens[i]);
+        }
+      } else {
+        for (let i = 0; i < tokens.length; i++) {
+          const w = tokens[i].raw.toLowerCase();
+          if (!tokens[i].isCompound && w === "li" && mode === "subject") { mode = "predicate"; continue; }
+          if (!tokens[i].isCompound && w === "e") { mode = "object"; continue; }
+          if (!tokens[i].isCompound && (w === "kepeken" || w === "lon" || w === "tawa" || w === "tan") && mode !== "subject") {
+            mode = "prep";
+            prepTokens.push(tokens[i]);
+            continue;
+          }
+          if (mode === "subject") subjectTokens.push(tokens[i]);
+          else if (mode === "predicate") predicateTokens.push(tokens[i]);
+          else if (mode === "object") objectTokens.push(tokens[i]);
+          else if (mode === "prep") prepTokens.push(tokens[i]);
         }
       }
 
-      const resolvePhrase = (arr) => {
-        if (!arr.length) return "";
-        const joined = arr.join(" ").toLowerCase();
-        if (COMPOUNDS[joined]) return COMPOUNDS[joined];
-
-        let out = [];
-        let i = 0;
-        while (i < arr.length) {
-          if (i + 2 < arr.length) {
-            const tri = `${arr[i]} ${arr[i+1]} ${arr[i+2]}`.toLowerCase();
-            if (COMPOUNDS[tri]) { out.push(COMPOUNDS[tri]); i += 3; continue; }
-          }
-          if (i + 1 < arr.length) {
-            const bi = `${arr[i]} ${arr[i+1]}`.toLowerCase();
-            if (COMPOUNDS[bi]) { out.push(COMPOUNDS[bi]); i += 2; continue; }
-          }
-          const raw = arr[i];
-          if (/^[A-Z]/.test(raw)) {
-            out.push(raw);
-          } else {
-            const entry = WORD_MAP[raw.toLowerCase()];
-            out.push(entry ? entry.ar.split("/")[0].trim() : raw);
-          }
-          i++;
-        }
-        return out.join(" ");
+      const renderTokens = (arr, isFirstPersonSubj = false) => {
+        return arr.map((t, idx) => {
+          if (t.isCompound) return t.ar;
+          if (/^[A-Z]/.test(t.raw)) return t.raw;
+          const lw = t.raw.toLowerCase();
+          if (lw === "mi") return "أنا";
+          if (lw === "sina") return "أنت";
+          if (lw === "ona") return "هو";
+          if (lw === "wile" && isFirstPersonSubj && idx === 0) return "أريد";
+          if (lw === "lukin" && isFirstPersonSubj && idx === 0) return "أرى";
+          if (lw === "moku" && isFirstPersonSubj && idx === 0) return "آكل";
+          if (lw === "tawa" && isFirstPersonSubj && idx === 0) return "أذهب";
+          const entry = WORD_MAP[lw];
+          return entry ? entry.ar.split("/")[0].trim() : t.raw;
+        }).join(" ");
       };
 
       let subjText = "";
-      if (subjectWords.length > 1 && subjectWords[subjectWords.length - 1].toLowerCase() === "mi") {
-        subjText = resolvePhrase(subjectWords.slice(0, -1)) + " (الخاص بي)";
-      } else if (subjectWords.length > 1 && subjectWords[subjectWords.length - 1].toLowerCase() === "sina") {
-        subjText = resolvePhrase(subjectWords.slice(0, -1)) + " (الخاص بك)";
+      if (subjectTokens.length > 1 && subjectTokens[subjectTokens.length - 1].raw.toLowerCase() === "mi") {
+        subjText = renderTokens(subjectTokens.slice(0, -1)) + "ي";
+      } else if (subjectTokens.length > 1 && subjectTokens[subjectTokens.length - 1].raw.toLowerCase() === "sina") {
+        subjText = renderTokens(subjectTokens.slice(0, -1)) + "ك";
       } else {
-        subjText = resolvePhrase(subjectWords);
+        subjText = renderTokens(subjectTokens);
       }
 
-      const predText = resolvePhrase(predicateWords);
-      const objText = resolvePhrase(objectWords);
-      const prepText = resolvePhrase(prepWords);
+      const isMe = subjectTokens.length === 1 && subjectTokens[0].raw.toLowerCase() === "mi";
+      const predText = renderTokens(predicateTokens, isMe);
+      const objText = renderTokens(objectTokens);
+      const prepText = renderTokens(prepTokens);
 
       let parts = [];
       if (subjText) parts.push(subjText);
@@ -2056,14 +1849,14 @@
       if (objText) parts.push(objText);
       if (prepText) parts.push(prepText);
 
-      let finalSentence = parts.join(" ");
+      let finalSentence = parts.join(" ").replace(/\s+/g, " ").trim();
       if (lowerClause.includes("seme")) {
         finalSentence += "؟";
       }
 
       let noteParts = [];
       if (subjText) noteParts.push(`الفاعل: ${subjText}`);
-      if (predText) noteParts.push(`الخبر/الفعل: ${predText}`);
+      if (predText) noteParts.push(`الفعل/الخبر: ${predText}`);
       if (objText) noteParts.push(`المفعول به: ${objText}`);
       if (prepText) noteParts.push(`شبه الجملة: ${prepText}`);
 
@@ -2113,7 +1906,7 @@
         if (clean2 && COMPOUNDS[bi]) {
           const pill = document.createElement("div");
           pill.className = "token-pill compound";
-          pill.innerHTML = `<span class="tp">${clean1} ${clean2}</span><span class="ar">${COMPOUNDS[bi]}</span>`;
+          pill.innerHTML = `<span class="tp">${clean1} ${clean2}</span><span class="ar">${COMPOUNDS[bi].split("/")[0].trim()}</span>`;
           bar.appendChild(pill);
           i += 2;
           continue;
